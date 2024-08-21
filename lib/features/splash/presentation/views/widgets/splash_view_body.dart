@@ -1,8 +1,40 @@
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
-class SplashViewBody extends StatelessWidget {
+import 'sliding_text';
+
+class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
+
+  @override
+  State<SplashViewBody> createState() => _SplashViewBodyState();
+}
+
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slidinganimation;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    slidinganimation =
+        Tween<Offset>(begin: const Offset(0, 5), end: Offset.zero)
+            .animate(animationController);
+    animationController.forward();
+    slidinganimation.addListener(() {
+      // setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    animationController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +46,35 @@ class SplashViewBody extends StatelessWidget {
         const SizedBox(
           height: 7,
         ),
-        const Center(
-            child: Text(
-          'Read Free Books',
-          style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
-        ))
+        SlidingText(slidinganimation: slidinganimation),
       ],
     );
+  }
+}
+
+class SlidingText extends StatelessWidget {
+  const SlidingText({
+    super.key,
+    required this.slidinganimation,
+  });
+
+  final Animation<Offset> slidinganimation;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+        animation:
+            slidinganimation, //istead of setstate because it rebuild whole widets
+        builder: (context, _) {
+          return SlideTransition(
+            position: slidinganimation,
+            child: const Center(
+              child: Text(
+                'Read Free Books',
+                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
+              ),
+            ),
+          );
+        });
   }
 }
