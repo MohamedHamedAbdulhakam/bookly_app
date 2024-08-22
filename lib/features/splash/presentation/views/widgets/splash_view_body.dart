@@ -1,7 +1,8 @@
+import 'package:bookly_app/constants.dart';
 import 'package:bookly_app/core/utils/assets.dart';
+import 'package:bookly_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
-
-import 'sliding_text';
+import 'package:get/get.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -18,6 +19,18 @@ class _SplashViewBodyState extends State<SplashViewBody>
   void initState() {
     // TODO: implement initState
     super.initState();
+    initSlidingAnimation();
+    navigateToHome();
+  }
+
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.to(const HomeView(),
+          transition: Transition.leftToRight, duration: KTranstionDuration);
+    });
+  }
+
+  void initSlidingAnimation() {
     animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     slidinganimation =
@@ -46,14 +59,14 @@ class _SplashViewBodyState extends State<SplashViewBody>
         const SizedBox(
           height: 7,
         ),
-        SlidingText(slidinganimation: slidinganimation),
+        SlidingAnimation(slidinganimation: slidinganimation)
       ],
     );
   }
 }
 
-class SlidingText extends StatelessWidget {
-  const SlidingText({
+class SlidingAnimation extends StatelessWidget {
+  const SlidingAnimation({
     super.key,
     required this.slidinganimation,
   });
@@ -63,18 +76,47 @@ class SlidingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation:
-            slidinganimation, //istead of setstate because it rebuild whole widets
-        builder: (context, _) {
-          return SlideTransition(
-            position: slidinganimation,
-            child: const Center(
-              child: Text(
-                'Read Free Books',
-                style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
-              ),
+      animation:
+          slidinganimation, //istead of setstate because it rebuild whole widets
+      builder: (context, _) {
+        return SlideTransition(
+          position: slidinganimation,
+          child: const Center(
+            child: Text(
+              'Read Free Books',
+              style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
+
+
+// class SlidingText extends StatelessWidget {
+//   const SlidingText({
+//     super.key,
+//     required this.slidinganimation,
+//   });
+
+//   final Animation<Offset> slidinganimation;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return AnimatedBuilder(
+//         animation:
+//             slidinganimation, //istead of setstate because it rebuild whole widets
+//         builder: (context, _) {
+//           return SlideTransition(
+//             position: slidinganimation,
+//             child: const Center(
+//               child: Text(
+//                 'Read Free Books',
+//                 style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
+//               ),
+//             ),
+//           );
+//         });
+//   }
+// }
