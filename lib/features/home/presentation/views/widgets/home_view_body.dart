@@ -22,7 +22,7 @@ class HomeViewBody extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(left: 20),
-          child: Text('Best Seller', style: Styles.titileMudium),
+          child: Text('Best Seller', style: Styles.textStyle18),
         ),
         BestSellerListViewItem(),
       ],
@@ -37,7 +37,7 @@ class BestSellerListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Padding(
