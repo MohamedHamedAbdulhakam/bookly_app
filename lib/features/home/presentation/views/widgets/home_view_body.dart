@@ -25,6 +25,9 @@ class HomeViewBody extends StatelessWidget {
           padding: EdgeInsets.only(left: 20),
           child: Text('Best Seller', style: Styles.textStyle18),
         ),
+        const SizedBox(
+          height: 20,
+        ),
         BestSellerListViewItem(),
       ],
     );
@@ -38,9 +41,6 @@ class BestSellerListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 20,
-        ),
         Padding(
           padding: const EdgeInsets.only(left: 18),
           child: SizedBox(
@@ -60,10 +60,20 @@ class BestSellerListViewItem extends StatelessWidget {
                         )),
                   ),
                 ),
+                const SizedBox(
+                  width: 30,
+                ),
                 Column(
                   children: [
-                    Text('Harry Potter and the globlet of fire',
-                        style: Styles.textStyle20.copyWith()),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .5,
+                      child: Text(
+                        'Harry Potter and the globlet of fire',
+                        style: Styles.textStyle20.copyWith(),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
                   ],
                 )
               ],
