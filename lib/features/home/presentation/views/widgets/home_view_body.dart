@@ -3,6 +3,7 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'best_seller_list_view_item.dart';
 import 'featured_list_view.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -29,57 +30,6 @@ class HomeViewBody extends StatelessWidget {
           height: 20,
         ),
         BestSellerListViewItem(),
-      ],
-    );
-  }
-}
-
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 18),
-          child: SizedBox(
-            height: 100,
-            child: Row(
-              children: [
-                AspectRatio(
-                  aspectRatio: 3 / 5,
-                  child: Container(
-                    width: 100,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.red,
-                        image: const DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage(AssetsDate.testImage),
-                        )),
-                  ),
-                ),
-                const SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
-                      child: Text(
-                        'Harry Potter and the globlet of fire',
-                        style: Styles.textStyle20.copyWith(),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
       ],
     );
   }
