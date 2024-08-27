@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
+import 'book_rating.dart';
 
 class BestSellerListViewItem extends StatelessWidget {
   const BestSellerListViewItem({super.key});
@@ -32,43 +34,47 @@ class BestSellerListViewItem extends StatelessWidget {
                 const SizedBox(
                   width: 30,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .5,
-                      child: Text(
-                        'Harry Potter and the goblet of Fire',
-                        style: Styles.textStyle20,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .5,
+                        child: Text(
+                          'Harry Potter and the goblet of Fire',
+                          style: Styles.textStyle20,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      Text(
+                        'J.K.Rowling',
+                        style: Styles.textStyle14,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    Text(
-                      'J.K.Rowling',
-                      style: Styles.textStyle14,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    const Row(
-                      children: [
-                        Text(
-                          '19.99 \$',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              decoration: TextDecoration.none),
-                        )
-                      ],
-                    )
-                  ],
+                      const SizedBox(
+                        height: 3,
+                      ),
+                      const Row(
+                        children: [
+                          Text(
+                            '19.99 \$',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                decoration: TextDecoration.none),
+                          ),
+                          Spacer(),
+                          BookRating(),
+                        ],
+                      )
+                    ],
+                  ),
                 )
               ],
             ),
