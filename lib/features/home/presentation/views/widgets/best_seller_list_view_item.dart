@@ -13,7 +13,7 @@ class BestSellerListViewItem extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 18),
+          padding: const EdgeInsets.only(left: 15, right: 5),
           child: SizedBox(
             height: 100,
             child: Row(
