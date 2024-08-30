@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/utils/styles.dart';
 import 'package:bookly_app/core/widgets/custom_bottom.dart';
 import 'package:bookly_app/features/home/presentation/views/widgets/book_details_view_body.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class BookActions extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: CustomBottom(
               text: '19.99\$',
               backGroundColor: Colors.white,
@@ -30,7 +31,7 @@ class BookActions extends StatelessWidget {
                   bottomLeft: Radius.circular(12)),
             ),
           ),
-          Expanded(
+          const Expanded(
             child: CustomBottom(
               fontSize: 16,
               text: 'Free Preview',
