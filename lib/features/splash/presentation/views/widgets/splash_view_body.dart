@@ -98,7 +98,6 @@ class SlidingAnimation extends StatelessWidget {
   }
 }
 
-
 // class SlidingText extends StatelessWidget {
 //   const SlidingText({
 //     super.key,
