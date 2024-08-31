@@ -8,8 +8,8 @@ import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class BestSellerListViewItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 15, right: 5),
             child: SizedBox(
-              height: 100,
+              height: 115,
               child: Row(
                 children: [
                   AspectRatio(
