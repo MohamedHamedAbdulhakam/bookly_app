@@ -10,7 +10,6 @@ class HomeRepoImplementation implements HomeRepo {
   HomeRepoImplementation(this.apiServices);
   @override
   Future<Either<Failures, List<BookModel>>> fechBestSellerBooks() async {
-    // TODO: implement fechBestSellerBooks
     try {
       var data = await apiServices.get(
           endpoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
@@ -24,7 +23,6 @@ class HomeRepoImplementation implements HomeRepo {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(e.toString()));
-      // TODO
     }
   }
 
@@ -43,7 +41,6 @@ class HomeRepoImplementation implements HomeRepo {
         return left(ServerFailure.fromDioError(e));
       }
       return left(ServerFailure(e.toString()));
-      // TODO
     }
   }
 }

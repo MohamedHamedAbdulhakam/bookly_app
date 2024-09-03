@@ -18,7 +18,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
   late Animation<Offset> slidinganimation;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initSlidingAnimation();
     navigateToHome();

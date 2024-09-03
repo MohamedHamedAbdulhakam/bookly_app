@@ -1,17 +1,14 @@
-import 'package:bookly_app/constants.dart';
-import 'package:bookly_app/core/utils/api_services.dart';
-import 'package:bookly_app/core/utils/app_router.dart';
-import 'package:bookly_app/core/utils/service_locator.dart';
-import 'package:bookly_app/features/home/data/repos/home_repo_implementation.dart';
-import 'package:bookly_app/features/home/presentation/manger/featured_book_cubit/featured_books_cubit.dart';
-import 'package:bookly_app/features/home/presentation/manger/featured_book_cubit/newest_books_cubit/newest_books_cubit.dart';
-import 'package:bookly_app/features/splash/presentation/views/splash_view.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+
+import 'constants.dart';
+import 'core/utils/api_services.dart';
+import 'core/utils/app_router.dart';
+import 'core/utils/service_locator.dart';
+import 'features/home/data/repos/home_repo_implementation.dart';
+import 'features/home/presentation/manger/featured_book_cubit/featured_books_cubit.dart';
+import 'features/home/presentation/manger/featured_book_cubit/newest_books_cubit/newest_books_cubit.dart';
 
 void main() {
   setupServiceLocator();
@@ -27,13 +24,13 @@ class BooklyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => FeaturedBooksCubit(
-              getIt.registerSingleton<HomeRepoImplementation>(
-                  HomeRepoImplementation(getIt.get<ApiServices>()))),
+            getIt.get<HomeRepoImplementation>(),
+          )..fetchFeatureBooks(),
         ),
         BlocProvider(
           create: (context) => NewestBooksCubit(
-              getIt.registerSingleton<HomeRepoImplementation>(
-                  HomeRepoImplementation(getIt.get<ApiServices>()))),
+            getIt.get<HomeRepoImplementation>(),
+          ),
         ),
       ],
       child: MaterialApp.router(
