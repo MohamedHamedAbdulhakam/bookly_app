@@ -17,10 +17,14 @@ class FeaturedBooksListView extends StatelessWidget {
           return SizedBox(
             height: MediaQuery.of(context).size.height * .3,
             child: ListView.builder(
-              itemCount: 10, // Number of items in the list
+              physics:
+                  const BouncingScrollPhysics(), // prvent lightness that show in the begin of page when you scroll
+              itemCount: state.books.length, // Number of items in the list
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return const CustomBookImage();
+                return CustomBookImage(
+                  imageUrl: state.books[index].volumeInfo.imageLinks.thumbnail,
+                );
               },
             ),
           );
