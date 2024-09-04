@@ -1,16 +1,16 @@
-import 'package:bookly_app/core/utils/app_router.dart';
-import 'package:bookly_app/features/home/presentation/views/book_details_view.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../../core/utils/styles.dart';
 import 'book_rating.dart';
 
 class BookListViewItem extends StatelessWidget {
-  const BookListViewItem({super.key});
-
+  const BookListViewItem({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -25,19 +25,21 @@ class BookListViewItem extends StatelessWidget {
               height: 115,
               child: Row(
                 children: [
-                  AspectRatio(
-                    aspectRatio: 3 / 5,
-                    child: Container(
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.red,
-                          image: const DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage(AssetsDate.testImage),
-                          )),
-                    ),
-                  ),
+                  CustomBookImage(
+                      imageUrl: bookModel.volumeInfo.imageLinks.thumbnail),
+                  // AspectRatio(
+                  //   aspectRatio: 3 / 5,
+                  //   child: Container(
+                  //     width: 100,
+                  //     decoration: BoxDecoration(
+                  //         borderRadius: BorderRadius.circular(16),
+                  //         color: Colors.red,
+                  //         image: const DecorationImage(
+                  //           fit: BoxFit.fill,
+                  //           image: AssetImage(AssetsDate.testImage),
+                  //         )),
+                  //   ),
+                  // ),
                   const SizedBox(
                     width: 30,
                   ),
@@ -48,7 +50,7 @@ class BookListViewItem extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * .5,
                           child: Text(
-                            'Harry Potter and the goblet of Fire',
+                            bookModel.volumeInfo.title!,
                             style: Styles.textStyle20,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
@@ -58,7 +60,7 @@ class BookListViewItem extends StatelessWidget {
                           height: 3,
                         ),
                         Text(
-                          'J.K.Rowling',
+                          bookModel.volumeInfo.authors![0],
                           style: Styles.textStyle14,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -66,18 +68,21 @@ class BookListViewItem extends StatelessWidget {
                         const SizedBox(
                           height: 3,
                         ),
-                        const Row(
+                        Row(
                           children: [
-                            Text(
-                              '19.99 \$',
+                            const Text(
+                              'Free',
                               style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                   decoration: TextDecoration.none),
                             ),
-                            Spacer(),
-                            BookRating(),
+                            const Spacer(),
+                            BookRating(
+                              rating: bookModel.volumeInfo.maturityRating!,
+                              count: bookModel.volumeInfo.hashCode,
+                            ),
                           ],
                         )
                       ],

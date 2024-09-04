@@ -36,7 +36,7 @@ class SearchResulsListView extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             vertical: 10,
           ),
-          child: BookListViewItem(),
+          // child: BookListViewItem(),
         );
       },
     );
