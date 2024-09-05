@@ -6,4 +6,6 @@ abstract class HomeRepo {
   Future<Either<Failures, List<BookModel>>>
       fechBestSellerBooks(); //withot implementation because i used an absract calss
   Future<Either<Failures, List<BookModel>>> fechFeaturedBooks();
+  Future<Either<Failures, List<BookModel>>> fechSimilarBooks(
+      {required String category});
 }

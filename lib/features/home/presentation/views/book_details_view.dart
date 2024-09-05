@@ -1,49 +1,27 @@
-import 'package:bookly_app/core/utils/styles.dart';
-import 'package:bookly_app/core/widgets/custom_bottom.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/book_details_view_body.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class BookDetailsView extends StatelessWidget {
-  const BookDetailsView({super.key});
+import '../manger/similar_books_cubit/similar_books_cubit.dart';
+import 'widgets/book_details_view_body.dart';
 
+class BookDetailsView extends StatefulWidget {
+  const BookDetailsView({super.key, required this.bookModel});
+  final BookModel bookModel;
   @override
-  Widget build(BuildContext context) {
-    return const SafeArea(child: BookDetailsViewBody());
-  }
+  State<BookDetailsView> createState() => _BookDetailsViewState();
 }
 
-class BookActions extends StatelessWidget {
-  const BookActions({super.key});
-
+class _BookDetailsViewState extends State<BookDetailsView> {
   @override
+  @override
+  void initState() {
+    BlocProvider.of<SimilarBooksCubit>(context).fetchSimilarBooks(
+        category: widget.bookModel.volumeInfo.categories![0]);
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        children: [
-          const Expanded(
-            child: CustomBottom(
-              text: '19.99\$',
-              backGroundColor: Colors.white,
-              textColor: Colors.black,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  bottomLeft: Radius.circular(12)),
-            ),
-          ),
-          const Expanded(
-            child: CustomBottom(
-              fontSize: 16,
-              text: 'Free Preview',
-              backGroundColor: Color(0xffEF8262),
-              textColor: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(12),
-                  bottomRight: Radius.circular(12)),
-            ),
-          ),
-        ],
-      ),
-    );
+    return const SafeArea(child: BookDetailsViewBody());
   }
 }

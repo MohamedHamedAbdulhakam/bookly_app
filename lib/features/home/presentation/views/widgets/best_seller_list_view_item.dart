@@ -15,7 +15,7 @@ class BookListViewItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kbookDetailsView);
+        GoRouter.of(context).push(AppRouter.kbookDetailsView, extra: bookModel);
       },
       child: Column(
         children: [
@@ -26,7 +26,8 @@ class BookListViewItem extends StatelessWidget {
               child: Row(
                 children: [
                   CustomBookImage(
-                      imageUrl: bookModel.volumeInfo.imageLinks.thumbnail),
+                      imageUrl:
+                          bookModel.volumeInfo.imageLinks?.thumbnail ?? ''),
                   // AspectRatio(
                   //   aspectRatio: 3 / 5,
                   //   child: Container(
