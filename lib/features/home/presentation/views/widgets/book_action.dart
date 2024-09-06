@@ -1,16 +1,18 @@
 import 'package:bookly_app/core/widgets/custom_bottom.dart';
+import 'package:bookly_app/features/home/data/models/book_model/book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BookActions extends StatelessWidget {
-  const BookActions({super.key});
-
+  const BookActions({super.key, required this.bookmodel});
+  final BookModel bookmodel;
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: CustomBottom(
               text: 'Free',
               backGroundColor: Colors.white,
@@ -22,11 +24,19 @@ class BookActions extends StatelessWidget {
           ),
           Expanded(
             child: CustomBottom(
+              onpressed: () async {
+                Uri uri = Uri.parse(bookmodel.volumeInfo.previewLink!);
+                if (!await launchUrl(uri)) {
+                  //we brings
+                  throw Exception(
+                      'Could not launch $uri'); //two lines from url pachages from google
+                }
+              },
               fontSize: 16,
               text: 'Free Preview',
-              backGroundColor: Color(0xffEF8262),
+              backGroundColor: const Color(0xffEF8262),
               textColor: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12)),
             ),
