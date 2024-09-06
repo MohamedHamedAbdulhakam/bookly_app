@@ -12,7 +12,7 @@ class BookActions extends StatelessWidget {
         children: [
           Expanded(
             child: CustomBottom(
-              text: '19.99\$',
+              text: 'Free',
               backGroundColor: Colors.white,
               textColor: Colors.black,
               borderRadius: BorderRadius.only(

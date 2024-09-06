@@ -49,8 +49,7 @@ class HomeRepoImplementation implements HomeRepo {
       {required String category}) async {
     try {
       var data = await apiServices.get(
-          endpoint:
-              'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=subject:programming&Sorting=relevence');
+          endpoint: 'volumes?Filtering=free-ebooks&q=subject:programming');
       List<BookModel> books = [];
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
@@ -64,3 +63,4 @@ class HomeRepoImplementation implements HomeRepo {
     }
   }
 }
+/*'https://www.googleapis.com/books/v1/volumes?Filtering=free-ebooks&q=subject:programming&Sorting=relevence' */
