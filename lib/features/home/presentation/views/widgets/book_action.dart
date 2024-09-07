@@ -32,7 +32,7 @@ class BookActions extends StatelessWidget {
                 }
               },
               fontSize: 16,
-              text: 'Free Preview',
+              text: getText(bookmodel),
               backGroundColor: const Color(0xffEF8262),
               textColor: Colors.white,
               borderRadius: const BorderRadius.only(
@@ -43,5 +43,13 @@ class BookActions extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String getText(BookModel bookmodel) {
+    if (bookmodel.volumeInfo.previewLink == null) {
+      return 'not available';
+    } else {
+      return 'preview';
+    }
   }
 }
