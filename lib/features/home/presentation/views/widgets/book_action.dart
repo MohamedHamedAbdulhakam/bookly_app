@@ -27,9 +27,8 @@ class BookActions extends StatelessWidget {
               onpressed: () async {
                 Uri uri = Uri.parse(bookmodel.volumeInfo.previewLink!);
                 if (!await launchUrl(uri)) {
-                  //we brings
-                  throw Exception(
-                      'Could not launch $uri'); //two lines from url pachages from google
+                  await launchUrl(
+                      uri); //we brings//two lines from url pachages from google
                 }
               },
               fontSize: 16,
